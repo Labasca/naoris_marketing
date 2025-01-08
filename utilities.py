@@ -19,27 +19,9 @@ def get_image_as_base64(url):
         encoded_string = base64.b64encode(image_file.read()).decode()
     return "data:image/png;base64," + encoded_string
 
-def get_max_total_supply(database_data):
-    df_database = pd.DataFrame(database_data)
 
-    # Check if 'max_total_supply' column exists in the DataFrame
-    if 'max_total_supply' in df_database.columns:
-        # Get the first value from the 'max_total_supply' column
-        max_total_supply_value = df_database['max_total_supply'].iloc[0]
-        return max_total_supply_value
-    else:
-        raise ValueError("Max total supply data not found in the database")
 
-def get_starting_price_tge(database_data):
-    df_database = pd.DataFrame(database_data)
 
-    # Check if 'max_total_supply' column exists in the DataFrame
-    if 'listing_price' in df_database.columns:
-        # Get the first value from the 'max_total_supply' column
-        starting_price_tge_value = df_database['listing_price'].iloc[0]
-        return starting_price_tge_value
-    else:
-        raise ValueError("Max total supply data not found in the database")
 
 def human_format(num):
     magnitude = 0
@@ -88,20 +70,7 @@ def custom_price_format(num):
     else:
         return f"${num:.2f}"
 
-def display_large_metric(label, value, label_color="#afb2b6", value_color="white",
-                          label_font_size="12px", value_font_size="25px",
-                          label_margin_bottom="0px", value_margin_top="0px",
-                          box_width="80%", box_height="auto", box_padding_top="12px", box_padding_bottom="7px", box_padding_lr="30px",
-                          box_background_color="#262730", box_border_radius="15px",
-                          box_border_color="#3d4044", box_border_width="1px"):
 
-    metric_html = f"""
-        <div style="width: {box_width}; height: {box_height}; margin: auto; text-align: center; padding: {box_padding_top} {box_padding_lr} {box_padding_bottom} {box_padding_lr}; background-color: {box_background_color}; border-radius: {box_border_radius}; border: {box_border_width} solid {box_border_color};">
-            <div style="margin: {value_margin_top} 0 {label_margin_bottom} 0; color: {label_color}; font-size: {label_font_size};">{label}</div>
-            <div style="margin: {value_margin_top} 0 {label_margin_bottom} 0; color: {value_color}; font-size: {value_font_size};">{value}</div>
-        </div>
-    """
-    st.markdown(metric_html, unsafe_allow_html=True)
 
 
 def display_large_metric_content(label, value, label_color="#afb2b6", value_color="white",
